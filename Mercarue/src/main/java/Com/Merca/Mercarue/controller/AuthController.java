@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +27,8 @@ import Com.Merca.Mercarue.repository.RoleRepository;
 import Com.Merca.Mercarue.repository.UserRepository;
 import Com.Merca.Mercarue.request.LoginRequest;
 import Com.Merca.Mercarue.responce.JwtResponse;
-import Com.Merca.Mercarue.services.UserDetailsImpl;
-
-
+import Com.Merca.Mercarue.services.*;
+@Controller
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -47,7 +47,7 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 	@Autowired
-	Com.Merca.Mercarue.services.usersecice usersecice;
+	usersecice usersecice;
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
